@@ -229,24 +229,21 @@ function findUpId(innerId, outerId) {
     }
     return false;
 }
-
-
 function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    document.getElementById('drag1').style.cssFloat = 'left';
-    document.getElementById('drag2').style.cssFloat = 'left';
-    var d3 = document.getElementById('drag3');
-    d3.style.cssFloat = 'right';
-    var d4 = document.getElementById('drag4');
-    d4.style.cssFloat = 'right';
-    if (findUpId('drag2', 'div1')) {
-        d3.style.marginTop = '-5vw';
+    let target = ev.target;
+    if (target.id === "div1" || target.id == "div2") {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("Text");
+        target.appendChild(document.getElementById(data));
+        var firstDiv = document.getElementById('div1');
+        var secondDiv = document.getElementById('div2');
+        if (firstDiv.children.length == 2) {
+            firstDiv.lastChild.style.marginTop = "-1vw";
+        }
+        if(secondDiv.children.length == 2){
+            secondDiv.lastChild.style.marginTop = "-1vw";
+        }
     }
-    if (findUpId('drag3', 'div1')) {
-        d4.style.marginTop = '-10vw';
-    }
-    ev.target.appendChild(document.getElementById(data));
 }
 //---------------end drag and drop for question 3---------------//
 
